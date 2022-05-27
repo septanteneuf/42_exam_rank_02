@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf 2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bbourcy@student.42lausanne.ch              +#+  +:+       +#+        */
+/*   By: bbourcy <bbourcy@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 11:29:22 by bbourcy           #+#    #+#             */
-/*   Updated: 2022/01/11 11:47:53 by bbourcy          ###   ########.fr       */
+/*   Updated: 2022/05/27 11:02:42 by bbourcy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int    ft_putchar(char c)
     return (write(1, &c, 1));
 }
 
-// %s affiche une chaine de caracteres
 int    ft_putstr(char *s)
 {
     int    count;
@@ -38,7 +37,6 @@ int    ft_putstr(char *s)
     return (count);
 }
 
-// %d imprime un nombre décimal (base 10) et %i imprime un entier en base 10
 int    ft_putnbr(int n)
 {
     unsigned int    i;

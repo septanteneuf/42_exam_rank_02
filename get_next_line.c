@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 0xNino <marvin@42lausanne.ch>              +#+  +:+       +#+        */
+/*   By: bbourcy <bbourcy@student.42lausanne.ch>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 15:58:30 by 0xNino            #+#    #+#             */
-/*   Updated: 2022/01/03 16:00:59 by 0xNino           ###   ########.fr       */
+/*   Updated: 2022/05/27 11:06:26 by bbourcy          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>>
+#include <stdlib.h>
+#include <fcntl.h>
 
 #ifndef BUFFER_SIZE
 # define BUFFER_SIZE 1
@@ -69,4 +70,55 @@ char	*get_next_line(int fd)
 		line = NULL;
 	}
 	return (line);
+}
+
+// char	*get_next_line(int fd)
+// {
+// 	char	a[999999];
+// 	char	buffer[1];
+// 	char	*new_a;
+// 	int		i;
+ 
+// 	if (fd < 0 && BUFFER_SIZE <= 0)
+// 		return (NULL);
+// 	i = 0;
+// 	a[i] = 0;
+// 	while (read(fd, buffer, 1) == 1)
+// 	{
+// 		a[i] = buffer[0];
+// 		a[i + 1] = '\0';
+// 		if (a[i] == '\n')
+// 			break;
+// 		i++;
+// 	}
+// 	if (!a[0])
+// 		return (NULL);
+// 	new_a = malloc(i + 1);
+// 	if (!new_a)
+// 		return (NULL);
+// 	i = 0;
+// 	while (a[i])
+// 	{
+// 		new_a[i] = a[i];
+// 		i++;
+// 	}
+// 	new_a[i] = '\0';
+// 	return (new_a);
+// }
+
+int main(int ac, char **av)
+{
+	int		fd;
+	char	*line;
+	(void)ac;
+
+	fd = open(av[1], O_RDONLY);
+    while ((line = get_next_line(fd)) != 0)
+	{
+		printf("%s", line);
+		free(line);
+	}
+	close(fd);
+	system("leaks a.out");
+	return (0);
 }
