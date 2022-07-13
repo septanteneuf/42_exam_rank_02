@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-int	ft_putnbr(unsigned int i, int base);
-
 int	ft_putchar(char c)
 {
 	return (write(1, &c, 1));
@@ -25,20 +23,6 @@ int	ft_putstr(char *str)
 	return (i);
 }
 
-int	ft_putint(int i)
-{
-	int	count;
-
-	count = 0;
-	if (i < 0)
-	{
-		count += ft_putchar('-');
-		i *= -1;
-	}
-	count += ft_putnbr(i, 10);
-	return (count);
-}
-
 int	ft_putnbr(unsigned int i, int base)
 {
 	char	*base_set;
@@ -51,6 +35,20 @@ int	ft_putnbr(unsigned int i, int base)
 		count += ft_putnbr(i / base, base);
 	n = i % base;
 	count += ft_putchar(base_set[n]);
+	return (count);
+}
+
+int	ft_putint(int i)
+{
+	int	count;
+
+	count = 0;
+	if (i < 0)
+	{
+		count += ft_putchar('-');
+		i *= -1;
+	}
+	count += ft_putnbr(i, 10);
 	return (count);
 }
 
@@ -96,4 +94,3 @@ int	main(void)
 	printf(" : (%d) bytes printed\n", ft_printf("(%x)", hexadecimal));
 	return (0);
 }
-
