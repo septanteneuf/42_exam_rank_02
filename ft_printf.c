@@ -3,11 +3,6 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-int	ft_putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
 int	ft_putstr(char *str)
 {
 	int	i;
@@ -17,7 +12,7 @@ int	ft_putstr(char *str)
 		str = "(null)";
 	while (str[i])
 	{
-		ft_putchar(str[i]);
+		write(1, &str[i], 1);
 		i++;
 	}
 	return (i);
@@ -34,7 +29,7 @@ int	ft_putnbr(unsigned int i, int base)
 	if (i / base > 0)
 		count += ft_putnbr(i / base, base);
 	n = i % base;
-	count += ft_putchar(base_set[n]);
+	count += write(1, &base_set[n], 1);
 	return (count);
 }
 
@@ -45,7 +40,7 @@ int	ft_putint(int i)
 	count = 0;
 	if (i < 0)
 	{
-		count += ft_putchar('-');
+		count += write(1, "-", 1);
 		i *= -1;
 	}
 	count += ft_putnbr(i, 10);
@@ -74,7 +69,7 @@ int	ft_printf(char *format, ...)
 				count += ft_putnbr(va_arg(args, unsigned int), 16);
 		}
 		else
-			count += ft_putchar(format[i]);
+			count += write(1, &format[i], 1);
 		i++;
 	}
 	va_end(args);
