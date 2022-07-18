@@ -41,19 +41,31 @@ char	*get_next_line(int fd)
 	return (new_a);
 }
 
-int main(int ac, char **av)
+int main()
 {
-	int		fd;
-	char	*line;
-	(void)	ac;
-
-	fd = open(av[1], O_RDONLY);
-    while ((line = get_next_line(fd)) != 0)
-	{
-		printf("%s", line);
-		free(line);
-	}
-	close(fd);
-//	system("leaks a.out");
-	return (0);
+    int fd = open("file", O_RDONLY);
+    int i = 0;
+    while (i < 6)
+    {
+        printf("Return : %s\n", get_next_line(fd));
+        i++;
+    }
+    
 }
+
+// int main(int argc, char **argv)
+// {
+// 	int		fd;
+// 	char	*line;
+// 	(void)	argc;
+
+// 	fd = open(argv[1], O_RDONLY);
+//     while ((line = get_next_line(fd)) != 0)
+// 	{
+// 		printf("%s", line);
+// 		free(line);
+// 	}
+// 	close(fd);
+// //	system("leaks a.out");
+// 	return (0);
+// }

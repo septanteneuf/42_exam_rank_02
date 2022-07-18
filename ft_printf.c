@@ -80,7 +80,7 @@ int	main(void)
 	char	*str = "42";
 	char	*empty = NULL;
 	int		integer = 32;
-	int		hexadecimal = 32;
+	int		hexadecimal = 42;
 
 	printf(" : (%d) bytes printed\n", ft_printf("(%s)", str));
 	printf(" : (%d) bytes printed\n", ft_printf("(%s)", empty));
