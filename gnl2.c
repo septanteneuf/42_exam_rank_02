@@ -38,5 +38,5 @@ int main()
         i++;
     }
     close(fd);
-//	system("leaks a.out");
+	system("leaks a.out");
 }
