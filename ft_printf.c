@@ -18,7 +18,7 @@ int	ft_putstr(char *str)
 	return (i);
 }
 
-int	ft_putnbr(unsigned int i, int base)
+int	ft_puthexa(unsigned int i, int base)
 {
 	char	*base_set;
 	int		count;
@@ -27,13 +27,13 @@ int	ft_putnbr(unsigned int i, int base)
 	base_set = "0123456789abcdef";
 	count = 0;
 	if (i / base > 0)
-		count += ft_putnbr(i / base, base);
+		count += ft_puthexa(i / base, base);
 	n = i % base;
 	count += write(1, &base_set[n], 1);
 	return (count);
 }
 
-int	ft_putint(int i)
+int	ft_putnbr(int i)
 {
 	int	count;
 
@@ -43,10 +43,9 @@ int	ft_putint(int i)
 		count += write(1, "-", 1);
 		i *= -1;
 	}
-	count += ft_putnbr(i, 10);
+	count += ft_puthexa(i, 10);
 	return (count);
 }
-
 int	ft_printf(char *format, ...)
 {
 	int			count;
@@ -64,9 +63,9 @@ int	ft_printf(char *format, ...)
 			if (format[i] == 's')
 				count += ft_putstr(va_arg(args, char *));
 			if (format[i] == 'd')
-				count += ft_putint(va_arg(args, int));
+				count += ft_putnbr(va_arg(args, int));
 			if (format[i] == 'x')
-				count += ft_putnbr(va_arg(args, unsigned int), 16);
+				count += ft_puthexa(va_arg(args, unsigned int), 16);
 		}
 		else
 			count += write(1, &format[i], 1);
