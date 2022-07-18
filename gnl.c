@@ -15,10 +15,7 @@ char	*get_next_line(int fd)
 	while (read(fd, cursor, 1) > 0)
 	{
 		if (*cursor == '\n')
-		{
-//			free(start);
 			break;
-		}
 		*cursor++;
 	}
 	if (cursor > start)
@@ -27,6 +24,7 @@ char	*get_next_line(int fd)
 		free(start);
 		return (start);
 	}
+	free(start);
 	return (NULL);
 }
 
