@@ -2,12 +2,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include <limits.h>
 
 int	ft_putstr(char *str)
 {
-	int	i;
+	int	i = 0;
 
-	i = 0;
 	if (!str)
 		str = "(null)";
 	while (str[i])
@@ -20,12 +20,10 @@ int	ft_putstr(char *str)
 
 int	ft_puthexa(unsigned int i, int base)
 {
-	char	*base_set;
-	int		count;
+	char	*base_set = "0123456789abcdef";
+	int		count = 0;
 	int		n;
 
-	base_set = "0123456789abcdef";
-	count = 0;
 	if (i / base > 0)
 		count += ft_puthexa(i / base, base);
 	n = i % base;
@@ -35,9 +33,8 @@ int	ft_puthexa(unsigned int i, int base)
 
 int	ft_putnbr(int i)
 {
-	int	count;
+	int	count = 0;
 
-	count = 0;
 	if (i < 0)
 	{
 		count += write(1, "-", 1);
@@ -48,12 +45,10 @@ int	ft_putnbr(int i)
 }
 int	ft_printf(char *format, ...)
 {
-	int			count;
+	int			count = 0;
 	va_list		args;
-	int			i;
+	int			i = 0;
 
-	i = 0;
-	count = 0;
 	va_start(args, format);
 	while (format[i])
 	{
@@ -77,14 +72,18 @@ int	ft_printf(char *format, ...)
 
 int	main(void)
 {
-	char	*str = "42";
+	char	*str = "42 Lausanne";
 	char	*empty = NULL;
-	int		integer = 32;
-	int		hexadecimal = 42;
+	int		integer = -2147483649;
+	int		hexa = 42;
 
 	printf(" : (%d) bytes printed\n", ft_printf("(%s)", str));
+	printf(" : (%d) bytes printed\n", printf("(%s)", str));
 	printf(" : (%d) bytes printed\n", ft_printf("(%s)", empty));
+	printf(" : (%d) bytes printed\n", printf("(%s)", empty));
 	printf(" : (%d) bytes printed\n", ft_printf("(%d)", integer));
-	printf(" : (%d) bytes printed\n", ft_printf("(%x)", hexadecimal));
+	printf(" : (%d) bytes printed\n", printf("(%d)", integer));
+	printf(" : (%d) bytes printed\n", ft_printf("(%x)", hexa));
+	printf(" : (%d) bytes printed\n", printf("(%x)", hexa));
 	return (0);
 }
