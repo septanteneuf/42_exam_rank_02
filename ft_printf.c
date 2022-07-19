@@ -85,5 +85,6 @@ int	main(void)
 	printf(" : (%d) bytes printed\n", printf("(%d)", integer));
 	printf(" : (%d) bytes printed\n", ft_printf("(%x)", hexa));
 	printf(" : (%d) bytes printed\n", printf("(%x)", hexa));
+//	system("leaks a.out");
 	return (0);
 }

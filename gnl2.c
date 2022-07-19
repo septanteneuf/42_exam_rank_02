@@ -30,7 +30,7 @@ char *get_next_line(int fd)
 
 int main()
 {
-    int fd = open("file", O_RDONLY);
+    int fd = open("gnl", O_RDONLY);
     int i = 0;
     while (i < 30)
     {
