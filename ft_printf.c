@@ -38,11 +38,14 @@ int	ft_putnbr(int i)
 	if (i < 0)
 	{
 		count += write(1, "-", 1);
+		if (i < INT_MIN || i > INT_MAX)
+		exit(0);
 		i *= -1;
 	}
 	count += ft_puthexa(i, 10);
 	return (count);
 }
+
 int	ft_printf(char *format, ...)
 {
 	int			count = 0;
@@ -75,6 +78,7 @@ int	main(void)
 	char	*str = "42 Lausanne";
 	char	*empty = NULL;
 	int		integer = -2147483649;
+	int		integer2 = 2147483649;
 	int		hexa = 42;
 
 	printf(" : (%d) bytes printed\n", ft_printf("(%s)", str));
@@ -83,6 +87,8 @@ int	main(void)
 	printf(" : (%d) bytes printed\n", printf("(%s)", empty));
 	printf(" : (%d) bytes printed\n", ft_printf("(%d)", integer));
 	printf(" : (%d) bytes printed\n", printf("(%d)", integer));
+	printf(" : (%d) bytes printed\n", ft_printf("(%d)", integer2));
+	printf(" : (%d) bytes printed\n", printf("(%d)", integer2));
 	printf(" : (%d) bytes printed\n", ft_printf("(%x)", hexa));
 	printf(" : (%d) bytes printed\n", printf("(%x)", hexa));
 //	system("leaks a.out");
